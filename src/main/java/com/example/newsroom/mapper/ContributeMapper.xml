@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.newsroom.dao.ContributeMapper">
+
+    <insert id="uploadArticleInfo" parameterType="Article"  useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO articles
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                title,
+            </if>
+            <if test="format != null">
+                format,
+            </if>
+            <if test="academicsec != null">
+                academicsec,
+            </if>
+            <if test="keyword1 != null">
+                keyword1,
+            </if>
+            <if test="keyword2 != null">
+                keyword2,
+            </if>
+            <if test="keyword3 != null">
+                keyword3,
+            </if>
+            <if test="keyword4 != null">
+                keyword4,
+            </if>
+            <if test="writer_id != null">
+                writer_id,
+            </if>
+            <if test="writers_info != null">
+                writers_info,
+            </if>
+            <if test="date_pub != null">
+                date_pub,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                #{title},
+            </if>
+            <if test="format != null">
+                #{format},
+            </if>
+            <if test="academicsec != null">
+                #{academicsec},
+            </if>
+            <if test="keyword1 != null">
+                #{keyword1},
+            </if>
+            <if test="keyword2 != null">
+                #{keyword2},
+            </if>
+            <if test="keyword3 != null">
+                #{keyword3},
+            </if>
+            <if test="keyword4 != null">
+                #{keyword4},
+            </if>
+            <if test="writer_id != null">
+                #{writer_id},
+            </if>
+            <if test="writers_info != null">
+                #{writers_info,jdbcType=TEXT},
+            </if>
+            <if test="date_pub != null">
+                #{date_pub},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateTask">
+        UPDATE tasks
+        <set>
+            flag = #{flag},
+            <if test="stat != 0">
+                stat = #{stat},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
+
+    <insert id="createTask" parameterType="Task" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO tasks
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id_article != null">
+                id_article,
+            </if>
+            <if test="id_role != null">
+                id_role,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="stat != null">
+                stat,
+            </if>
+            <if test="role != null">
+                role,
+            </if>
+            <if test="flag != null">
+                flag,
+            </if>
+            <if test="date != null">
+                `date`,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id_article != null">
+                #{id_article},
+            </if>
+            <if test="id_role != null">
+                #{id_role},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="stat != null">
+                #{stat},
+            </if>
+            <if test="role != null">
+                #{role},
+            </if>
+            <if test="flag != null">
+                #{flag},
+            </if>
+            <if test="date != null">
+                #{date},
+            </if>
+        </trim>
+    </insert>
+
+    <insert id="createInvoice" parameterType="Invoice" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO invoices
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id_article != null">
+                id_article,
+            </if>
+            <if test="flag != null">
+                flag,
+            </if>
+            <if test="receipt_title != null">
+                receipt_title,
+            </if>
+            <if test="receipt_num != null">
+                receipt_num,
+            </if>
+            <if test="address != null">
+                address,
+            </if>
+            <if test="receiver != null">
+                receiver,
+            </if>
+            <if test="type != null">
+                `type`,
+            </if>
+            <if test="expense != null">
+                expense,
+            </if>
+            <if test="date != null">
+                `date`,
+            </if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id_article != null">
+                #{id_article},
+            </if>
+            <if test="flag != null">
+                #{flag},
+            </if>
+            <if test="receipt_title != null">
+                #{receipt_title},
+            </if>
+            <if test="receipt_num != null">
+                #{receipt_num+,
+            </if>
+            <if test="address != null">
+                #{address},
+            </if>
+            <if test="receiver != null">
+                #{receiver},
+            </if>
+            <if test="type != null">
+                #{type},
+            </if>
+            <if test="expense != null">
+                #{expense},
+            </if>
+            <if test="date != null">
+                #{date},
+            </if>
+        </trim>
+    </insert>
+
+    <select id="getTask" parameterType="java.lang.Integer" resultType="Map">
+        SELECT * FROM tasks WHERE id_role = #{id_role} AND role = #{role}
+    </select>
+
+    <select id="getTableByRole" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT roletable FROM type_role WHERE id = #{role}
+    </select>
+
+    <select id="getAllByTable" parameterType="java.lang.String" resultType="java.util.Map">
+        SELECT * FROM ${table}
+    </select>
+
+    <select id="getRoleIdByTask" resultType="java.lang.Integer">
+        SELECT id_role FROM tasks WHERE id_article = #{id_article} AND role = #{role} LIMIT 1,1
+    </select>
+
+    <select id="getCountByArticleId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM tasks WHERE id_article = #{id_article} AND role = 4
+    </select>
+
+    <select id="getArticleById" parameterType="java.lang.Integer" resultType="Article">
+        SELECT * FROM articles WHERE id = #{id}
+    </select>
+
+
+</mapper>
