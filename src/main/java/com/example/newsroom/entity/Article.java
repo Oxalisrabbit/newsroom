@@ -7,18 +7,21 @@ public class Article {
     private String title;
     private String format;
     private int academicsec;
+    private int column;
     private String keyword1_ch = new String();
     private String keyword2_ch = new String();
     private String keyword3_ch = new String();
     private String keyword4_ch = new String();
-    private String keyword1_eh = new String();
-    private String keyword2_eh = new String();
-    private String keyword3_eh = new String();
-    private String keyword4_eh = new String();
+    private String keyword1_en = new String();
+    private String keyword2_en = new String();
+    private String keyword3_en = new String();
+    private String keyword4_en = new String();
     private String summary_ch = new String();
     private String summary_en = new String();
     private int writer_id;
     private String writers_info = new String();
+    private String writer_prefer = new String();
+    private String writer_avoid = new String();
     private Date date_pub;
 
     public void setId(int id) {
@@ -43,6 +46,22 @@ public class Article {
 
     public String getFormat() {
         return format;
+    }
+
+    public void setAcademicsec(int academicsec) {
+        this.academicsec = academicsec;
+    }
+
+    public int getAcademicsec() {
+        return academicsec;
+    }
+
+    public void setColumn(int column) {
+        this.column = column;
+    }
+
+    public int getColumn() {
+        return column;
     }
 
     public void setKeyword1_ch(String keyword1_ch) {
@@ -77,36 +96,36 @@ public class Article {
         return keyword4_ch;
     }
 
-    public void setKeyword1_eh(String keyword1_eh) {
-        this.keyword1_eh = keyword1_eh;
+    public void setKeyword1_en(String keyword1_en) {
+        this.keyword1_en = keyword1_en;
     }
 
-    public String getKeyword1_eh() {
-        return keyword1_eh;
+    public String getKeyword1_en() {
+        return keyword1_en;
     }
 
-    public void setKeyword2_eh(String keyword2_eh) {
-        this.keyword2_eh = keyword2_eh;
+    public void setKeyword2_en(String keyword2_en) {
+        this.keyword2_en = keyword2_en;
     }
 
-    public String getKeyword2_eh() {
-        return keyword2_eh;
+    public String getKeyword2_en() {
+        return keyword2_en;
     }
 
-    public void setKeyword3_eh(String keyword3_eh) {
-        this.keyword3_eh = keyword3_eh;
+    public void setKeyword3_en(String keyword3_en) {
+        this.keyword3_en = keyword3_en;
     }
 
-    public String getKeyword3_eh() {
-        return keyword3_eh;
+    public String getKeyword3_en() {
+        return keyword3_en;
     }
 
-    public void setKeyword4_eh(String keyword4_eh) {
-        this.keyword4_eh = keyword4_eh;
+    public void setKeyword4_en(String keyword4_en) {
+        this.keyword4_en = keyword4_en;
     }
 
-    public String getKeyword4_eh() {
-        return keyword4_eh;
+    public String getKeyword4_en() {
+        return keyword4_en;
     }
 
     public void setSummary_ch(String summary_ch) {
@@ -133,20 +152,28 @@ public class Article {
         return writer_id;
     }
 
-    public void setAcademicsec(int academicsec) {
-        this.academicsec = academicsec;
-    }
-
-    public int getAcademicsec() {
-        return academicsec;
-    }
-
     public void setWriters_info(String writers_info) {
         this.writers_info = writers_info;
     }
 
     public String getWriters_info() {
         return writers_info;
+    }
+
+    public void setWriter_prefer(String writer_prefer) {
+        this.writer_prefer = writer_prefer;
+    }
+
+    public String getWriter_prefer() {
+        return writer_prefer;
+    }
+
+    public void setWriter_avoid(String writer_avoid) {
+        this.writer_avoid = writer_avoid;
+    }
+
+    public String getWriter_avoid() {
+        return writer_avoid;
     }
 
     public void setDate_pub(Date date_pub) {

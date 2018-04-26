@@ -3,11 +3,14 @@ package com.example.newsroom.service.impl;
 import com.example.newsroom.dao.ContributeMapper;
 import com.example.newsroom.entity.Article;
 import com.example.newsroom.entity.Invoice;
+import com.example.newsroom.entity.Professor_;
 import com.example.newsroom.entity.Task;
 import com.example.newsroom.service.ContributeService;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -17,22 +20,35 @@ public class ContributeServiceimpl implements ContributeService{
     ContributeMapper contributeMapper;
 
     @Override
+    public Integer updateArticleInfo(int id,String format){
+        try{
+            return contributeMapper.updateArticleInfo(id,format);
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    @Override
     public Integer uploadArticleInfo(Article article){
         try{
             return contributeMapper.uploadArticleInfo(article);
         }
         catch (Exception e){
+            System.out.println(e);
             return null;
         }
 
     }
 
     @Override
-    public Integer updateTask(int id,String content,int stat,int flag){
+    public Integer updateTask(int id,int id_role,String content,int stat,int role,int flag,Date date){
         try{
-            return contributeMapper.updateTask(id,content,stat,flag);
+            return contributeMapper.updateTask(id,id_role,content,stat,role,flag,date);
         }
         catch (Exception e){
+            System.out.println(e);
             return null;
         }
     }
@@ -43,16 +59,18 @@ public class ContributeServiceimpl implements ContributeService{
             return contributeMapper.createTask(task);
         }
         catch (Exception e){
+            System.out.println(e);
             return null;
         }
     }
 
     @Override
-    public List<Task> getTask(int id_role, int role){
+    public List<Task> getTask(int id_role, int role,int stat,int flag,int page){
         try{
-            return contributeMapper.getTask(id_role,role);
+            return contributeMapper.getTask(id_role,role,stat,flag,(page - 1) * 10);
         }
         catch (Exception e){
+            System.out.println(e);
             return null;
         }
     }
@@ -63,6 +81,7 @@ public class ContributeServiceimpl implements ContributeService{
             return contributeMapper.getTableByRole(role);
         }
         catch (Exception e){
+            System.out.println(e);
             return null;
         }
     }
@@ -73,16 +92,18 @@ public class ContributeServiceimpl implements ContributeService{
             return contributeMapper.getAllByTable(table);
         }
         catch (Exception e){
+            System.out.println(e);
             return null;
         }
     }
 
     @Override
-    public Integer getRoleIdByTask(int id_article,int role){
+    public List<Integer> getRoleIdByTask(int id_article,int role){
         try{
             return contributeMapper.getRoleIdByTask(id_article,role);
         }
         catch (Exception e){
+            System.out.println(e);
             return null;
         }
     }
@@ -93,6 +114,7 @@ public class ContributeServiceimpl implements ContributeService{
             return contributeMapper.getCountByArticleId(id_article);
         }
         catch (Exception e){
+            System.out.println(e);
             return null;
         }
     }
@@ -103,6 +125,18 @@ public class ContributeServiceimpl implements ContributeService{
             return contributeMapper.getArticleById(id);
         }
         catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    @Override
+    public Integer updateInvoice(int id,int flag,String receipt_title,int receipt_num,String address,String receiver){
+        try{
+            return contributeMapper.updateInvoice(id,flag,receipt_title,receipt_num,address,receiver);
+        }
+        catch (Exception e){
+            System.out.println(e);
             return null;
         }
     }
@@ -113,6 +147,29 @@ public class ContributeServiceimpl implements ContributeService{
             return contributeMapper.createInvoice(invoice);
         }
         catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    @Override
+    public List<Invoice> getInvoiceByArticleId(int id_article){
+        try{
+            return contributeMapper.getInvoiceByArticleId(id_article);
+        }
+        catch (Exception e){
+            System.out.println(e);
+            return null;
+        }
+    }
+
+    @Override
+    public String getContentByRoleId(int id_role){
+        try{
+            return contributeMapper.getContentByRoleId(id_role);
+        }
+        catch (Exception e){
+            System.out.println(e);
             return null;
         }
     }

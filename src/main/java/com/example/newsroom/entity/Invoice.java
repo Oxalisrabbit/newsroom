@@ -11,7 +11,7 @@ public class Invoice {
     private String address;
     private String receiver;
     private int type;
-    private String expense;
+    private int expense;
     private Date date;
 
     public void setId(int id) {
@@ -78,11 +78,11 @@ public class Invoice {
         return type;
     }
 
-    public void setExpense(String expense) {
+    public void setExpense(int expense) {
         this.expense = expense;
     }
 
-    public String getExpense() {
+    public int getExpense() {
         return expense;
     }
 

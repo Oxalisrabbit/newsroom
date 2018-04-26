@@ -1,5 +1,7 @@
 package com.example.newsroom.entity;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class All {
     private Article article;
     private Author author;
@@ -11,6 +13,8 @@ public class All {
     private Task task;
     private int role;
     private int[] id_role;
+    private int flag;
+    private int page;
 
     public void setArticle(Article article) {
         this.article = article;
@@ -90,5 +94,21 @@ public class All {
 
     public int[] getId_role() {
         return id_role;
+    }
+
+    public void setFlag(int flag) {
+        this.flag = flag;
+    }
+
+    public int getFlag() {
+        return flag;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public int getPage() {
+        return page;
     }
 }

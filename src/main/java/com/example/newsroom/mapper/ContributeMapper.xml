@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.newsroom.dao.ContributeMapper">
 
+    <update id="updateArticleInfo">
+        UPDATE articles
+        <set>
+            format = #{format},
+        </set>
+        WHERE id = #{id}
+    </update>
     <insert id="uploadArticleInfo" parameterType="Article"  useGeneratedKeys="true" keyProperty="id">
         INSERT INTO articles
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -14,23 +21,50 @@
             <if test="academicsec != null">
                 academicsec,
             </if>
-            <if test="keyword1 != null">
-                keyword1,
+            <if test="column != null">
+                `column`,
             </if>
-            <if test="keyword2 != null">
-                keyword2,
+            <if test="keyword1_ch != null">
+                keyword1_ch,
             </if>
-            <if test="keyword3 != null">
-                keyword3,
+            <if test="keyword2_ch != null">
+                keyword2_ch,
             </if>
-            <if test="keyword4 != null">
-                keyword4,
+            <if test="keyword3_ch != null">
+                keyword3_ch,
+            </if>
+            <if test="keyword4_ch != null">
+                keyword4_ch,
+            </if>
+            <if test="keyword1_en != null">
+                keyword1_en,
+            </if>
+            <if test="keyword2_en != null">
+                keyword2_en,
+            </if>
+            <if test="keyword3_en != null">
+                keyword3_en,
+            </if>
+            <if test="keyword4_en != null">
+                keyword4_en,
+            </if>
+            <if test="summary_ch != null">
+                summary_ch,
+            </if>
+            <if test="summary_en != null">
+                summary_en,
             </if>
             <if test="writer_id != null">
                 writer_id,
             </if>
             <if test="writers_info != null">
                 writers_info,
+            </if>
+            <if test="writer_prefer != null">
+                writer_prefer,
+            </if>
+            <if test="writer_avoid != null">
+                writer_avoid,
             </if>
             <if test="date_pub != null">
                 date_pub,
@@ -47,23 +81,50 @@
             <if test="academicsec != null">
                 #{academicsec},
             </if>
-            <if test="keyword1 != null">
-                #{keyword1},
+            <if test="column != null">
+                #{column},
             </if>
-            <if test="keyword2 != null">
-                #{keyword2},
+            <if test="keyword1_ch != null">
+                #{keyword1_ch},
             </if>
-            <if test="keyword3 != null">
-                #{keyword3},
+            <if test="keyword2_ch != null">
+                #{keyword2_ch},
             </if>
-            <if test="keyword4 != null">
-                #{keyword4},
+            <if test="keyword3_ch != null">
+                #{keyword3_ch},
+            </if>
+            <if test="keyword4_ch != null">
+                #{keyword4_ch},
+            </if>
+            <if test="keyword1_en != null">
+                #{keyword1_en},
+            </if>
+            <if test="keyword2_en != null">
+                #{keyword2_en},
+            </if>
+            <if test="keyword3_en != null">
+                #{keyword3_en},
+            </if>
+            <if test="keyword4_en != null">
+                #{keyword4_en},
+            </if>
+            <if test="summary_ch != null">
+                #{summary_ch},
+            </if>
+            <if test="summary_en != null">
+                #{summary_en},
             </if>
             <if test="writer_id != null">
                 #{writer_id},
             </if>
             <if test="writers_info != null">
-                #{writers_info,jdbcType=TEXT},
+                #{writers_info},
+            </if>
+            <if test="writer_prefer != null">
+                #{writer_prefer},
+            </if>
+            <if test="writer_avoid != null">
+                #{writer_avoid},
             </if>
             <if test="date_pub != null">
                 #{date_pub},
@@ -74,12 +135,9 @@
     <update id="updateTask">
         UPDATE tasks
         <set>
-            flag = #{flag},
-            <if test="stat != 0">
-                stat = #{stat},
-            </if>
-            <if test="content != null">
-                content = #{content,jdbcType=VARCHAR},
+            id_role = #{id_role},content = #{content},stat = #{stat},role = #{role},flag = #{flag},
+            <if test="date != null">
+                `date` = #{date},
             </if>
         </set>
         WHERE id = #{id}
@@ -119,7 +177,7 @@
                 #{id_role},
             </if>
             <if test="content != null">
-                #{content,jdbcType=VARCHAR},
+                #{content},
             </if>
             <if test="stat != null">
                 #{stat},
@@ -135,6 +193,29 @@
             </if>
         </trim>
     </insert>
+
+
+    <update id="updateInvoice">
+        UPDATE invoices
+        <set>
+            <if test="flag != null">
+                flag = #{flag},
+            </if>
+            <if test="receipt_title != null">
+                receipt_title = #{receipt_title},
+            </if>
+            <if test="receipt_num != null">
+                receipt_num = #{receipt_num},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="receiver != null">
+                receiver = #{receiver},
+            </if>
+        </set>
+        WHERE id = #{id}
+    </update>
 
     <insert id="createInvoice" parameterType="Invoice" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO invoices
@@ -179,7 +260,7 @@
                 #{receipt_title},
             </if>
             <if test="receipt_num != null">
-                #{receipt_num+,
+                #{receipt_num},
             </if>
             <if test="address != null">
                 #{address},
@@ -199,8 +280,18 @@
         </trim>
     </insert>
 
-    <select id="getTask" parameterType="java.lang.Integer" resultType="Map">
-        SELECT * FROM tasks WHERE id_role = #{id_role} AND role = #{role}
+    <resultMap id="TaskList" type="com.example.newsroom.entity.Task"/>
+    <select id="getTask" parameterType="java.lang.Integer" resultMap="TaskList">
+        SELECT * FROM tasks WHERE id_role = #{id_role} AND role = #{role} AND flag = #{flag}
+        <if test="role != 2">
+            <if test="stat == 0">
+                AND (stat != 4 AND stat != 6)
+            </if>
+            <if test="stat == 1">
+                AND (stat = 4 OR stat = 6)
+            </if>
+        </if>
+        LIMIT #{page},10
     </select>
 
     <select id="getTableByRole" parameterType="java.lang.Integer" resultType="java.lang.String">
@@ -212,15 +303,24 @@
     </select>
 
     <select id="getRoleIdByTask" resultType="java.lang.Integer">
-        SELECT id_role FROM tasks WHERE id_article = #{id_article} AND role = #{role} LIMIT 1,1
+        SELECT id_role FROM tasks WHERE id_article = #{id_article} AND role = #{role}
     </select>
 
     <select id="getCountByArticleId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
-        SELECT COUNT(*) FROM tasks WHERE id_article = #{id_article} AND role = 4
+        SELECT COUNT(*) FROM tasks WHERE id_article = #{id_article} AND role = 4 AND flag = 1
     </select>
 
     <select id="getArticleById" parameterType="java.lang.Integer" resultType="Article">
         SELECT * FROM articles WHERE id = #{id}
+    </select>
+
+    <resultMap id="InvoiceList" type="com.example.newsroom.entity.Invoice"/>
+    <select id="getInvoiceByArticleId" parameterType="java.lang.Integer" resultMap="InvoiceList">
+        SELECT * FROM invoices WHERE id_article = #{id_article}
+    </select>
+
+    <select id="getContentByRoleId" resultType="java.lang.String">
+        SELECT content FROM tasks WHERE id_role = #{id_role} AND role = 4 ORDER BY id DESC LIMIT 0,1
     </select>
 
 
