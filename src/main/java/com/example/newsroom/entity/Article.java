@@ -8,20 +8,21 @@ public class Article {
     private String format;
     private int academicsec;
     private int column;
-    private String keyword1_ch = new String();
-    private String keyword2_ch = new String();
-    private String keyword3_ch = new String();
-    private String keyword4_ch = new String();
+    private String keyword1_cn = new String();
+    private String keyword2_cn = new String();
+    private String keyword3_cn = new String();
+    private String keyword4_cn = new String();
     private String keyword1_en = new String();
     private String keyword2_en = new String();
     private String keyword3_en = new String();
     private String keyword4_en = new String();
-    private String summary_ch = new String();
+    private String summary_cn = new String();
     private String summary_en = new String();
     private int writer_id;
     private String writers_info = new String();
     private String writer_prefer = new String();
     private String writer_avoid = new String();
+    private Date date_sub;
     private Date date_pub;
 
     public void setId(int id) {
@@ -64,36 +65,36 @@ public class Article {
         return column;
     }
 
-    public void setKeyword1_ch(String keyword1_ch) {
-        this.keyword1_ch = keyword1_ch;
+    public void setKeyword1_cn(String keyword1_cn) {
+        this.keyword1_cn = keyword1_cn;
     }
 
-    public String getKeyword1_ch() {
-        return keyword1_ch;
+    public String getKeyword1_cn() {
+        return keyword1_cn;
     }
 
-    public void setKeyword2_ch(String keyword2_ch) {
-        this.keyword2_ch = keyword2_ch;
+    public void setKeyword2_cn(String keyword2_cn) {
+        this.keyword2_cn = keyword2_cn;
     }
 
-    public String getKeyword2_ch() {
-        return keyword2_ch;
+    public String getKeyword2_cn() {
+        return keyword2_cn;
     }
 
-    public void setKeyword3_ch(String keyword3_ch) {
-        this.keyword3_ch = keyword3_ch;
+    public void setKeyword3_cn(String keyword3_cn) {
+        this.keyword3_cn = keyword3_cn;
     }
 
-    public String getKeyword3_ch() {
-        return keyword3_ch;
+    public String getKeyword3_cn() {
+        return keyword3_cn;
     }
 
-    public void setKeyword4_ch(String keyword4_ch) {
-        this.keyword4_ch = keyword4_ch;
+    public void setKeyword4_cn(String keyword4_cn) {
+        this.keyword4_cn = keyword4_cn;
     }
 
-    public String getKeyword4_ch() {
-        return keyword4_ch;
+    public String getKeyword4_cn() {
+        return keyword4_cn;
     }
 
     public void setKeyword1_en(String keyword1_en) {
@@ -128,12 +129,12 @@ public class Article {
         return keyword4_en;
     }
 
-    public void setSummary_ch(String summary_ch) {
-        this.summary_ch = summary_ch;
+    public void setSummary_cn(String summary_cn) {
+        this.summary_cn = summary_cn;
     }
 
-    public String getSummary_ch() {
-        return summary_ch;
+    public String getSummary_cn() {
+        return summary_cn;
     }
 
     public void setSummary_en(String summary_en) {
@@ -174,6 +175,14 @@ public class Article {
 
     public String getWriter_avoid() {
         return writer_avoid;
+    }
+
+    public void setDate_sub(Date date_sub) {
+        this.date_sub = date_sub;
+    }
+
+    public Date getDate_sub() {
+        return date_sub;
     }
 
     public void setDate_pub(Date date_pub) {

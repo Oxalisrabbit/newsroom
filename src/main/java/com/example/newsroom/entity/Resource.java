@@ -1,5 +1,7 @@
 package com.example.newsroom.entity;
 
+import java.util.Date;
+
 public class Resource {
     private String func;
 

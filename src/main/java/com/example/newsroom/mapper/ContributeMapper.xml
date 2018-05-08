@@ -5,7 +5,12 @@
     <update id="updateArticleInfo">
         UPDATE articles
         <set>
-            format = #{format},
+            <if test="format != null">
+                format = #{format},
+            </if>
+            <if test="date_pub != null">
+                date_pub = #{date_pub},
+            </if>
         </set>
         WHERE id = #{id}
     </update>
@@ -24,17 +29,17 @@
             <if test="column != null">
                 `column`,
             </if>
-            <if test="keyword1_ch != null">
-                keyword1_ch,
+            <if test="keyword1_cn != null">
+                keyword1_cn,
             </if>
-            <if test="keyword2_ch != null">
-                keyword2_ch,
+            <if test="keyword2_cn != null">
+                keyword2_cn,
             </if>
-            <if test="keyword3_ch != null">
-                keyword3_ch,
+            <if test="keyword3_cn != null">
+                keyword3_cn,
             </if>
-            <if test="keyword4_ch != null">
-                keyword4_ch,
+            <if test="keyword4_cn != null">
+                keyword4_cn,
             </if>
             <if test="keyword1_en != null">
                 keyword1_en,
@@ -48,8 +53,8 @@
             <if test="keyword4_en != null">
                 keyword4_en,
             </if>
-            <if test="summary_ch != null">
-                summary_ch,
+            <if test="summary_cn != null">
+                summary_cn,
             </if>
             <if test="summary_en != null">
                 summary_en,
@@ -65,6 +70,9 @@
             </if>
             <if test="writer_avoid != null">
                 writer_avoid,
+            </if>
+            <if test="date_sub != null">
+                date_sub,
             </if>
             <if test="date_pub != null">
                 date_pub,
@@ -84,17 +92,17 @@
             <if test="column != null">
                 #{column},
             </if>
-            <if test="keyword1_ch != null">
-                #{keyword1_ch},
+            <if test="keyword1_cn != null">
+                #{keyword1_cn},
             </if>
-            <if test="keyword2_ch != null">
-                #{keyword2_ch},
+            <if test="keyword2_cn != null">
+                #{keyword2_cn},
             </if>
-            <if test="keyword3_ch != null">
-                #{keyword3_ch},
+            <if test="keyword3_cn != null">
+                #{keyword3_cn},
             </if>
-            <if test="keyword4_ch != null">
-                #{keyword4_ch},
+            <if test="keyword4_cn != null">
+                #{keyword4_cn},
             </if>
             <if test="keyword1_en != null">
                 #{keyword1_en},
@@ -108,8 +116,8 @@
             <if test="keyword4_en != null">
                 #{keyword4_en},
             </if>
-            <if test="summary_ch != null">
-                #{summary_ch},
+            <if test="summary_cn != null">
+                #{summary_cn},
             </if>
             <if test="summary_en != null">
                 #{summary_en},
@@ -125,6 +133,9 @@
             </if>
             <if test="writer_avoid != null">
                 #{writer_avoid},
+            </if>
+            <if test="date_sub != null">
+                #{date_sub},
             </if>
             <if test="date_pub != null">
                 #{date_pub},
@@ -201,6 +212,9 @@
             <if test="flag != null">
                 flag = #{flag},
             </if>
+            <if test="format != null">
+                format = #{format},
+            </if>
             <if test="receipt_title != null">
                 receipt_title = #{receipt_title},
             </if>
@@ -225,6 +239,9 @@
             </if>
             <if test="flag != null">
                 flag,
+            </if>
+            <if test="format != null">
+                format,
             </if>
             <if test="receipt_title != null">
                 receipt_title,
@@ -256,6 +273,9 @@
             <if test="flag != null">
                 #{flag},
             </if>
+            <if test="format != null">
+                #{format},
+            </if>
             <if test="receipt_title != null">
                 #{receipt_title},
             </if>
@@ -282,16 +302,26 @@
 
     <resultMap id="TaskList" type="com.example.newsroom.entity.Task"/>
     <select id="getTask" parameterType="java.lang.Integer" resultMap="TaskList">
-        SELECT * FROM tasks WHERE id_role = #{id_role} AND role = #{role} AND flag = #{flag}
-        <if test="role != 2">
-            <if test="stat == 0">
-                AND (stat != 4 AND stat != 6)
-            </if>
-            <if test="stat == 1">
-                AND (stat = 4 OR stat = 6)
+        SELECT * FROM tasks
+        <if test="flag == 0 || role == 4">
+            WHERE id_role = #{id_role} AND role = #{role} AND flag = #{flag}
+            <if test="role != 2">
+                <if test="stat == 0">
+                    AND (stat != 4 AND stat != 6)
+                </if>
+                <if test="stat == 1">
+                    AND (stat = 4 OR stat = 6)
+                </if>
             </if>
         </if>
+        <if test="flag == 1 and role != 4 and id_article != 0">
+            WHERE id_article = #{id_article} ORDER BY id DESC
+        </if>
         LIMIT #{page},10
+    </select>
+
+    <select id="getTaskById" parameterType="java.lang.Integer" resultType="Task">
+        SELECT * FROM tasks WHERE id = #{id}
     </select>
 
     <select id="getTableByRole" parameterType="java.lang.Integer" resultType="java.lang.String">
@@ -323,5 +353,12 @@
         SELECT content FROM tasks WHERE id_role = #{id_role} AND role = 4 ORDER BY id DESC LIMIT 0,1
     </select>
 
+    <select id="getStandard" resultType="java.lang.String">
+        SELECT content FROM newsroominfo WHERE `year` = #{year}
+    </select>
+
+    <select id="getCountByDatePub" resultType="java.lang.Integer">
+        SELECT COUNT(*) FROM articles WHERE date_pub BETWEEN #{begin} AND #{end}
+    </select>
 
 </mapper>

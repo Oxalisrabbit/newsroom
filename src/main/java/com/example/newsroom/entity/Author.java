@@ -1,202 +1,229 @@
 package com.example.newsroom.entity;
 
-public class Author {
+public class Author{
     private int id;
-    private String email = new String();
-    private String password = new String();
-    private String name = new String();
-    private String name_pinyin = new String();
+    private String email;
+    private String password;
+    private String name;
+    private String name_pinyin;
     private int gender;
-    private String address = new String();
-    private String postcode = new String();
-    private String workspace_ch = new String();
-    private String workspace_en = new String();
-    private String major = new String();
-    private String education = new String();
-    private String title = new String();
-    private String officetel = new String();
-    private String phonenum = new String();
-    private String location = new String();
-    private String researchdir = new String();
-    private String academicsec = new String();
-    private String introduction = new String();
-    private String safeque1 = new String();
-    private String safeque2 = new String();
-    private String safeque3 = new String();
-
-    public void setId(int id) {
-        this.id = id;
-    }
+    private String address;
+    private String postcode;
+    private String workspace_ch;
+    private String workspace_en;
+    private int major;
+    private int education;
+    private String title;
+    private String officetel;
+    private String phonenum;
+    private int location;
+    private String researchdir;
+    private int academicsec1;
+    private int academicsec2;
+    private int academicsec3;
+    private String introduction;
+    private String safeque1;
+    private String safeque2;
+    private String safeque3;
+    private int alive;
 
     public int getId() {
         return id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName_pinyin(String name_pinyin) {
-        this.name_pinyin = name_pinyin;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getName_pinyin() {
         return name_pinyin;
     }
 
-    public void setGender(int gender) {
-        this.gender = gender;
+    public void setName_pinyin(String name_pinyin) {
+        this.name_pinyin = name_pinyin;
     }
 
     public int getGender() {
         return gender;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setPostcode(String postcode) {
-        this.postcode = postcode;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPostcode() {
         return postcode;
     }
 
-    public void setWorkspace_ch(String workspace_ch) {
-        this.workspace_ch = workspace_ch;
+    public void setPostcode(String postcode) {
+        this.postcode = postcode;
     }
 
     public String getWorkspace_ch() {
         return workspace_ch;
     }
 
-    public void setWorkspace_en(String workspace_en) {
-        this.workspace_en = workspace_en;
+    public void setWorkspace_ch(String workspace_ch) {
+        this.workspace_ch = workspace_ch;
     }
 
     public String getWorkspace_en() {
         return workspace_en;
     }
 
-    public void setMajor(String major) {
-        this.major = major;
+    public void setWorkspace_en(String workspace_en) {
+        this.workspace_en = workspace_en;
     }
 
-    public String getMajor() {
+    public int getMajor() {
         return major;
     }
 
-    public void setEducation(String education) {
-        this.education = education;
+    public void setMajor(int major) {
+        this.major = major;
     }
 
-    public String getEducation() {
+    public int getEducation() {
         return education;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setEducation(int education) {
+        this.education = education;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setOfficetel(String officetel) {
-        this.officetel = officetel;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getOfficetel() {
         return officetel;
     }
 
-    public void setPhonenum(String phonenum) {
-        this.phonenum = phonenum;
+    public void setOfficetel(String officetel) {
+        this.officetel = officetel;
     }
 
     public String getPhonenum() {
         return phonenum;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setPhonenum(String phonenum) {
+        this.phonenum = phonenum;
     }
 
-    public String getLocation() {
+    public int getLocation() {
         return location;
     }
 
-    public void setResearchdir(String researchdir) {
-        this.researchdir = researchdir;
+    public void setLocation(int location) {
+        this.location = location;
     }
 
     public String getResearchdir() {
         return researchdir;
     }
 
-    public void setAcademicsec(String academicsec) {
-        this.academicsec = academicsec;
+    public void setResearchdir(String researchdir) {
+        this.researchdir = researchdir;
     }
 
-    public String getAcademicsec() {
-        return academicsec;
+    public void setAcademicsec1(int academicsec1) {
+        this.academicsec1 = academicsec1;
     }
 
-    public void setIntroduction(String introduction) {
-        this.introduction = introduction;
+    public int getAcademicsec1() {
+        return academicsec1;
+    }
+
+    public void setAcademicsec2(int academicsec2) {
+        this.academicsec2 = academicsec2;
+    }
+
+    public int getAcademicsec2() {
+        return academicsec2;
+    }
+
+    public void setAcademicsec3(int academicsec3) {
+        this.academicsec3 = academicsec3;
+    }
+
+    public int getAcademicsec3() {
+        return academicsec3;
     }
 
     public String getIntroduction() {
         return introduction;
     }
 
-    public void setSafeque1(String safeque1) {
-        this.safeque1 = safeque1;
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
     }
 
     public String getSafeque1() {
         return safeque1;
     }
 
-    public void setSafeque2(String safeque2) {
-        this.safeque2 = safeque2;
+    public void setSafeque1(String safeque1) {
+        this.safeque1 = safeque1;
     }
 
     public String getSafeque2() {
         return safeque2;
     }
 
-    public void setSafeque3(String safeque3) {
-        this.safeque3 = safeque3;
+    public void setSafeque2(String safeque2) {
+        this.safeque2 = safeque2;
     }
 
     public String getSafeque3() {
         return safeque3;
+    }
+
+    public void setSafeque3(String safeque3) {
+        this.safeque3 = safeque3;
+    }
+
+    public int getAlive() {
+        return alive;
+    }
+
+    public void setAlive(int alive) {
+        this.alive = alive;
     }
 }

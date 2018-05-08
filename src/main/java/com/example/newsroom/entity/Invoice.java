@@ -6,8 +6,9 @@ public class Invoice {
     private int id;
     private int id_article;
     private int flag;
+    private String format;
     private String receipt_title;
-    private int receipt_num;
+    private String receipt_num;
     private String address;
     private String receiver;
     private int type;
@@ -38,6 +39,14 @@ public class Invoice {
         return flag;
     }
 
+    public void setFormat(String format) {
+        this.format = format;
+    }
+
+    public String getFormat() {
+        return format;
+    }
+
     public void setReceipt_title(String receipt_title) {
         this.receipt_title = receipt_title;
     }
@@ -46,11 +55,11 @@ public class Invoice {
         return receipt_title;
     }
 
-    public void setReceipt_num(int receipt_num) {
+    public void setReceipt_num(String receipt_num) {
         this.receipt_num = receipt_num;
     }
 
-    public int getReceipt_num() {
+    public String getReceipt_num() {
         return receipt_num;
     }
 

@@ -1,14 +1,11 @@
 package com.example.newsroom.entity;
 
-import org.springframework.web.multipart.MultipartFile;
-
 public class All {
     private Article article;
     private Author author;
-    private Editor_ editor_;
+    private Editor editor;
     private Invoice invoice;
     private Professor professor;
-    private Professor_ professor_;
     private Resource resource;
     private Task task;
     private int role;
@@ -32,12 +29,12 @@ public class All {
         return author;
     }
 
-    public void setEditor_(Editor_ editor_) {
-        this.editor_ = editor_;
+    public void setEditor(Editor editor) {
+        this.editor = editor;
     }
 
-    public Editor_ getEditor_() {
-        return editor_;
+    public Editor getEditor() {
+        return editor;
     }
 
     public void setInvoice(Invoice invoice) {
@@ -54,14 +51,6 @@ public class All {
 
     public Professor getProfessor() {
         return professor;
-    }
-
-    public void setProfessor_(Professor_ professor_) {
-        this.professor_ = professor_;
-    }
-
-    public Professor_ getProfessor_() {
-        return professor_;
     }
 
     public void setResource(Resource resource) {
